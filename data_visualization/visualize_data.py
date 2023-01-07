@@ -1,3 +1,7 @@
+"""Author: Niklas Strømsnes
+Date: 2022-01-09
+"""
+
 import scipy
 import numpy as np
 import pandas as pd
@@ -343,3 +347,6 @@ def subplots_adjust(signal_type: list = ['time', 'spectrogram', 'fft'],
 
 if __name__ == '__main__':
     pass
+"""Author: Niklas Strømsnes
+Date: 2022-01-09
+"""
