@@ -5,7 +5,7 @@ This project serves as a pre-study in the process of utilising an optical MEMS a
 
 ## To run this project
 
-Download and unzip the folder called **Measurements.zip** from [here](https://www.google.com "Google Drive containing Measurements.zip")  containing all accumulated data in .csv files, and store that unzipped folder in the **active-touch-sensing-experiments** folder, so that it has the same path as `main.py`.
+Download and unzip the folder called **Measurements.zip** from [here](https://drive.google.com/file/d/15CAPPqugtm5_a0zzWb3lcDOTvgqhEa0F/view?usp=share_link "Google Drive containing Measurements.zip")  containing all accumulated data in .csv files, and store that unzipped folder in the **active-touch-sensing-experiments** folder, so that it has the same path as `main.py`.
 
 ## Code structure
 The code is meant to be run from main.py. Which results to produce is set in generate_results.py, which has a hierarchy of results_\<setup>() --> \<result description>() --> \<more spesific result description>() --> \<functions to do data processing and visualizations>().
