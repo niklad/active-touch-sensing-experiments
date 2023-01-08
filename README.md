@@ -3,6 +3,10 @@
 ## Abstract
 This project serves as a pre-study in the process of utilising an optical MEMS accelerometer array to detect touch localisation on a plate. For this project, the focus will be to detect touch position on a table surface by analysing the response from a vibrating actuator. Key concepts in this analysis will be tests performed on the table plate regarding its transfer function and wave carrying characteristis, along with information obtained from edge reflections an reverberation. The final product is aimed to be a cheaper alternative to especially larger touch screens, or to be mounted on plates such as tables.
 
+## To run this project
+
+Download and unzip the folder called **Measurements.zip** from [here](https://www.google.com "Google Drive containing Measurements.zip")  containing all accumulated data in .csv files, and store that unzipped folder in the **active-touch-sensing-experiments** folder, so that it has the same path as `main.py`.
+
 ## Code structure
 The code is meant to be run from main.py. Which results to produce is set in generate_results.py, which has a hierarchy of results_\<setup>() --> \<result description>() --> \<more spesific result description>() --> \<functions to do data processing and visualizations>().
 
