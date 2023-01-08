@@ -3,9 +3,9 @@ Date: 2022-01-09
 """
 
 import matplotlib.pyplot as plt
-from generate_results import (setup3_2_results,
-                              setup7_results,
-                              setup9_results,
+from generate_results import (setup2_results,
+                              setup3_results,
+                              setup1_results,
                               custom_plots)
 from data_visualization.visualize_data import set_fontsizes
 
@@ -18,24 +18,20 @@ def main():
     set_fontsizes()
 
     setup = ''
-    while input not in ['3', '7', '9', '0']:
+    while input not in ['1', '2', '3']:
         print('\nWhich setup do you want to generate results for?')
-        print('3: Setup 3.2')
-        print('7: Setup 7')
-        print('9: Setup 9')
-        print('0: Custom plots')
+        print('1: Setup 1')
+        print('2: Setup 2')
+        print('3: Setup 3')
         setup = input('Enter number: ')
-        if setup == '3':
-            setup3_2_results()
-        elif setup == '7':
-            setup7_results()
-        elif setup == '9':
-            setup9_results()
-        elif setup == '0':
-            custom_plots()
+        if setup == '1':
+            setup1_results()
+        elif setup == '2':
+            setup2_results()
+        elif setup == '3':
+            setup3_results()
         else:
-            print('Please type 3, 7 or 9 for their respective setups '
-                  'or c for custom plots used in the report.')
+            print('Please type 1, 2 or 3 for their respective setups.')
 
         plt.show()
     return 0
