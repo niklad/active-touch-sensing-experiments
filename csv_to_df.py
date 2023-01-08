@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -14,7 +15,7 @@ def csv_to_df(file_folder: str,
     Set channel_names to None to return a
     DataFrame with the default column names.
     """
-    file_path = f'Measurements/{file_folder}/{file_name}.csv'
+    file_path = os.path.join("Measurements", file_folder, f'{file_name}.csv')
     dataframe = pd.read_csv(filepath_or_buffer=file_path, names=channel_names)
 
     """Move 'Actuator' column to the front of the DataFrame"""
