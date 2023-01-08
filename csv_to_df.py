@@ -14,13 +14,7 @@ def csv_to_df(file_folder: str,
     Set channel_names to None to return a
     DataFrame with the default column names.
     """
-    if platform == 'linux':
-        ROOT_FOLDER = '/home/niklast/Documents/Specialization_project'
-        file_path = f'{ROOT_FOLDER}/{file_folder}/{file_name}.csv'
-    else:
-        ROOT_FOLDER = f'{Path.home()}\\OneDrive - NTNU\\NTNU\\ProsjektOppgave'
-        file_path = f'{ROOT_FOLDER}\\{file_folder}\\{file_name}.csv'
-
+    file_path = f'Measurements/{file_folder}/{file_name}.csv'
     dataframe = pd.read_csv(filepath_or_buffer=file_path, names=channel_names)
 
     """Move 'Actuator' column to the front of the DataFrame"""
