@@ -59,7 +59,7 @@ def setup1_results():
         print('\nWhich results do you want to generate?')
         print('1: Plot touch signals')
         print('2: Plot chirp signals')
-        print('3: Transfer function')
+        print('3: Transfer function and phase velocities')
         print('4: Scattering')
         print('5: Predict reflections')
         choice = input('Enter your choice: ')
@@ -98,7 +98,7 @@ def setup1_plot_touch_signals():
     """Filter signals to remove 50 Hz and other mud"""
     measurements_full_touch = filter_general(measurements_full_touch,
                                              filtertype='highpass',
-                                             cutoff_highpass=200)
+                                             cutoff_highpass=100)
 
     CHANNELS_TO_PLOT = ['Sensor 1', 'Sensor 3']
     for channel in CHANNELS_TO_PLOT:
@@ -193,6 +193,8 @@ def setup1_plot_chirp_signals():
                               fig, axs,
                               [channel])
         channel_file_name = channel.replace(" ", "").lower()
+    axs[0, 0].set_ylim([-20, 100])
+    axs[0, 0].legend(CHANNELS_TO_PLOT)
     file_name = 'setup1_chirp_fft_raw.pdf'
     plt.savefig(FIGURES_SAVE_PATH + file_name, format='pdf')
     for ax in plt.gcf().axes:
@@ -230,7 +232,7 @@ def setup1_plot_chirp_signals():
                               fig, axs,
                               [channel])
         channel_file_name = channel.replace(" ", "").lower()
-    axs[0, 0].set_ylim([20, 100])
+    axs[0, 0].set_ylim([-20, 100])
     axs[0, 0].legend(CHANNELS_TO_PLOT)
     # axs[0, 0].set_title('')
     file_name = 'setup1_chirp_fft_compressed.pdf'
@@ -758,56 +760,17 @@ def setup2_results():
 
     """Choose setup"""
     SETUP = Setup2()
-    subplots_adjust(['setup'], rows=1, columns=1)
     SETUP.draw()
+    subplots_adjust(['setup'])
+    plt.savefig(FIGURES_SAVE_PATH + 'setup2_draw.pdf',
+                format='pdf')
 
     setup2_transfer_function(SETUP)
 
-    # """Interpolate waveforms"""
-    # measurements = interpolate_waveform(measurements)
-
-    # """Set everything but the signal to zero"""
-    # direct_signal_seconds_sensor3 = 2 + 0.05  # Length of chirp + time for sensor 3 to die down
-    # threshold_amplitude = 0.0015  # Determine empirically
-    # measurements, signal_start_seconds = window_signals(measurements,
-    #                                                     direct_signal_seconds_sensor3,
-    #                                                     window_function='tukey',
-    #                                                     window_parameter=0.9)
-    # """Compress chirps"""
-    # measurements = compress_chirps(measurements)
-
-    # """Crop the compressed chirps to be only the direct signal"""
-    # # measurements.iloc[:(int(SAMPLE_RATE * 0.005))] = 0
-    # direct_signal_seconds_sensor1 = 0.0003
-    # threshold_amplitude = 1000  # Determine empirically
-    # measurements['Sensor 1'], _ = window_signals(pd.DataFrame(measurements['Sensor 1']),
-    #                                                           direct_signal_seconds_sensor1,
-    #                                                           window_function='tukey',
-    #                                                           window_parameter=0.9)
-    # # direct_signal_seconds_sensor2 = 0.00025
-    # # threshold_amplitude = 500  # Determine empirically
-    # # measurements['Sensor 2'], _ = window_signals(pd.DataFrame(measurements['Sensor 2']),
-    # #                                                           direct_signal_seconds_sensor2,
-    # #                                                           threshold_amplitude)
-    # direct_signal_seconds_sensor3 = 0.00035
-    # threshold_amplitude = 50  # Determine empirically
-    # measurements['Sensor 3'], _ = window_signals((pd.DataFrame(measurements['Sensor 3'])),
-    #                                                            direct_signal_seconds_sensor3,
-    #                                                            window_function='tukey',
-    #                                                            window_parameter=0.9)
-    """Run functions to generate results
-    NOTE:   Only change the functions below this line
-    """
-    # find_and_plot_power_loss(measurements,
-    #                          signal_start_seconds,
-    #                          direct_signal_seconds_sensor3,
-    #                          SETUP)
-    # setup2_transfer_function(SETUP)
-
 
 def setup2_plot_time_signals(measurements: pd.DataFrame,
-                               signal_start_seconds: float,
-                               signal_length_seconds: float):
+                             signal_start_seconds: float,
+                             signal_length_seconds: float):
     """SETTINGS FOR PLOTTING"""
     plots_to_plot = ['time']
 
@@ -851,8 +814,8 @@ def setup2_plot_time_signals(measurements: pd.DataFrame,
 
 
 def setup2_plot_spectrogram_signals(measurements: pd.DataFrame,
-                                      signal_start_seconds: float,
-                                      signal_length_seconds: float):
+                                    signal_start_seconds: float,
+                                    signal_length_seconds: float):
     """SETTINGS FOR PLOTTING"""
     NFFT = 2048
     PLOTS_TO_PLOT = ['spectrogram']
